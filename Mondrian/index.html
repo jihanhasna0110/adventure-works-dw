@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="OLAP AdventureWorks Data Warehouse using Mondrian">
+    <title>Adventure Works - OLAP Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .menu-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .menu-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .menu-card .title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .menu-card .description {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .demo-section {
+            background: #f1f3f5;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .demo-section h3 {
+            color: #495057;
+            margin-bottom: 20px;
+        }
+
+        .demo-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .demo-link {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .demo-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🏢 Adventure Works Data Warehouse</h1>
+            <p>OLAP Analysis using Mondrian & JPivot</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <h2 class="section-title">📊 Business Questions Analysis</h2>
+            
+            <div class="menu-grid">
+                <!-- BQ1 -->
+                <a href="testpage.jsp?query=bq1" class="menu-card">
+                    <span class="icon">💳</span>
+                    <div class="title">BQ1: Credit Card Usage</div>
+                    <div class="description">
+                        Jenis kartu kredit yang paling banyak digunakan dalam transaksi penjualan
+                    </div>
+                </a>
+
+                <!-- BQ2 -->
+                <a href="testpage.jsp?query=bq2" class="menu-card">
+                    <span class="icon">🎨</span>
+                    <div class="title">BQ2: Product Color Popularity</div>
+                    <div class="description">
+                        Produk dengan warna apa yang paling diminati konsumen berdasarkan total quantity terjual
+                    </div>
+                </a>
+
+                <!-- BQ3 -->
+                <a href="testpage.jsp?query=bq3" class="menu-card">
+                    <span class="icon">📦</span>
+                    <div class="title">BQ3: Order Status Distribution</div>
+                    <div class="description">
+                        Distribusi status order dalam 1 tahun terakhir (Shipped, Cancelled, Backordered, dll)
+                    </div>
+                </a>
+
+                <!-- BQ4 -->
+                <a href="testpage.jsp?query=bq4" class="menu-card">
+                    <span class="icon">💰</span>
+                    <div class="title">BQ4: Average Order Value</div>
+                    <div class="description">
+                        Rata-rata nilai transaksi per customer type (Individual vs Store) dan tren per kuartal
+                    </div>
+                </a>
+
+                <!-- BQ5 -->
+                <a href="testpage.jsp?query=bq5" class="menu-card">
+                    <span class="icon">👥</span>
+                    <div class="title">BQ5: Salesperson Performance</div>
+                    <div class="description">
+                        Perbandingan performa penjualan antar salesperson di setiap territory dalam 2 tahun terakhir
+                    </div>
+                </a>
+
+                <!-- DRILLDOWN -->
+                <a href="testpage.jsp?query=demo1" class="menu-card">
+                    <span class="icon">🔍</span>
+                    <div class="title">Demo Drilldown Olap</div>
+                    <div class="description">
+                        Menjelaskan bagaimana pengguna bisa menelusuri data dari level ringkasan ke level yang lebih detail, misalnya dari Tahun → Kuartal → Bulan, untuk menemukan pola atau anomali penjualan secara bertahap.
+                    </div>
+                </a>
+
+                <!-- SLICER -->
+                <a href="testpage.jsp?query=demo2" class="menu-card">
+                    <span class="icon">🔄</span>
+                    <div class="title">Demo Slicer Olap</div>
+                    <div class="description">
+                        Menunjukkan cara memfilter (slice & dice) data berdasarkan satu atau beberapa dimensi, seperti Tahun, Wilayah, atau Customer, sehingga pengguna hanya melihat subset data yang relevan dengan analisisnya.
+                    </div>
+                </a>
+
+                <!-- Pivot -->
+                <a href="testpage.jsp?query=demo3" class="menu-card">
+                    <span class="icon">🍰</span>
+                    <div class="title">Demo Pivot Olap</div>
+                    <div class="description">
+                        Memperlihatkan cara memutar (pivot) susunan baris dan kolom di tabel OLAP, sehingga pengguna bisa melihat perspektif berbeda (misalnya menukar posisi Produk dan Waktu) serta melakukan roll‑up/drill‑down untuk ringkasan atau detail.
+                    </div>
+                </a>
+
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Final Project:</strong> Data Warehouse & OLAP</p>
+            <p>Technology Stack: MySQL + Pentaho PDI + Mondrian OLAP + JPivot</p>
+        </div>
+    </div>
+</body>
+</html>

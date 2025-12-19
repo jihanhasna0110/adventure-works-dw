@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Schema name="AdventureWorksDW">
+  
+  <Cube name="Sales" visible="true" cache="true" enabled="true">
+    <Table name="fact_sales" schema="adventureworks_dw"/>
+    
+    <!-- DIMENSION TIME - CORRECTED BASED ON YOUR TABLE STRUCTURE -->
+    <Dimension type="TimeDimension" foreignKey="TimeKey" name="Time">
+      <Hierarchy hasAll="true" allMemberName="All Years" primaryKey="TimeKey">
+        <Table name="dim_time" schema="adventureworks_dw"/>
+        <Level name="Year" column="Year" uniqueMembers="true" 
+               levelType="TimeYears" type="Integer"/>
+        <Level name="Quarter" column="Quarter" uniqueMembers="false" 
+               levelType="TimeQuarters" type="Integer"
+               nameColumn="QuarterName"/>
+        <Level name="Month" column="Month" uniqueMembers="false" 
+               levelType="TimeMonths" type="Integer"
+               nameColumn="MonthName" ordinalColumn="Month"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION PRODUCT -->
+    <Dimension foreignKey="ProductKey" name="Product">
+      <Hierarchy hasAll="true" allMemberName="All Products" primaryKey="ProductKey">
+        <Table name="dim_product" schema="adventureworks_dw"/>
+        <Level name="Category" column="CategoryName" uniqueMembers="true"/>
+        <Level name="Subcategory" column="SubcategoryName" uniqueMembers="false"/>
+        <Level name="Product" column="ProductName" uniqueMembers="false"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION PRODUCT COLOR (untuk BQ2) -->
+    <Dimension foreignKey="ProductKey" name="Product Color">
+      <Hierarchy hasAll="true" allMemberName="All Colors" primaryKey="ProductKey">
+        <Table name="dim_product" schema="adventureworks_dw"/>
+        <Level name="Color" column="Color" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION CUSTOMER -->
+    <Dimension foreignKey="CustomerKey" name="Customer">
+      <Hierarchy hasAll="true" allMemberName="All Customers" primaryKey="CustomerKey">
+        <Table name="dim_customer" schema="adventureworks_dw"/>
+        <Level name="Customer Type" column="CustomerType" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION TERRITORY -->
+    <Dimension foreignKey="TerritoryKey" name="Territory">
+      <Hierarchy hasAll="true" allMemberName="All Territories" primaryKey="TerritoryKey">
+        <Table name="dim_territory" schema="adventureworks_dw"/>
+        <Level name="Territory Name" column="TerritoryName" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION SALESPERSON (untuk BQ5) -->
+    <Dimension foreignKey="SalespersonKey" name="Salesperson">
+      <Hierarchy hasAll="true" allMemberName="All Salespersons" primaryKey="SalespersonKey">
+        <Table name="dim_salesperson" schema="adventureworks_dw"/>
+        <Level name="Salesperson Name" column="FullName" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- DIMENSION CREDIT CARD (untuk BQ1) -->
+    <Dimension foreignKey="CreditCardKey" name="Credit Card">
+      <Hierarchy hasAll="true" allMemberName="All Card Types" primaryKey="CreditCardKey">
+        <Table name="dim_creditcard" schema="adventureworks_dw"/>
+        <Level name="Card Type" column="CardType" uniqueMembers="true"/>
+      </Hierarchy>
+    </Dimension>
+
+    <!-- DIMENSION ORDER STATUS (untuk BQ3) -->
+    <Dimension foreignKey="OrderStatus" name="Order Status">
+      <Hierarchy hasAll="true" allMemberName="All Status" primaryKey="SalesKey">
+        <Table name="fact_sales" schema="adventureworks_dw"/>
+        <Level name="Status" uniqueMembers="true">
+          <KeyExpression>
+            <SQL dialect="generic">OrderStatus</SQL>
+          </KeyExpression>
+          <NameExpression>
+            <SQL dialect="generic">
+              CASE OrderStatus
+                WHEN 1 THEN 'In Process'
+                WHEN 2 THEN 'Approved'
+                WHEN 3 THEN 'Backordered'
+                WHEN 4 THEN 'Rejected'
+                WHEN 5 THEN 'Shipped'
+                WHEN 6 THEN 'Cancelled'
+                ELSE 'Unknown'
+              END
+            </SQL>
+          </NameExpression>
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    
+    <!-- MEASURES -->
+    <Measure name="Total Sales" column="TotalDue" aggregator="sum" formatString="#,###.00"/>
+    <Measure name="Order Quantity" column="OrderQuantity" aggregator="sum" formatString="#,###"/>
+    <Measure name="Order Count" column="SalesOrderID" aggregator="distinct-count" formatString="#,###"/>
+    
+    <!-- CALCULATED MEMBER -->
+    <CalculatedMember name="Avg Order Value" dimension="Measures" 
+                      formula="[Measures].[Total Sales] / [Measures].[Order Count]" 
+                      formatString="#,###.00"/>
+  </Cube>
+  
+</Schema>

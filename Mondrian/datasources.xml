@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSources>
+  <DataSource>
+    <DataSourceName>AdventureWorksOLAP</DataSourceName>
+    <DataSourceDescription>AdventureWorks Data Warehouse</DataSourceDescription>
+
+    <URL>http://localhost:8080/mondrian/xmla</URL>
+
+    <DataSourceInfo>
+      Provider=mondrian;
+      Jdbc=jdbc:mysql://localhost:3306/adventureworks_dw?useSSL=false&amp;serverTimezone=UTC;
+      JdbcUser=root;
+      JdbcPassword=;
+      JdbcDrivers=com.mysql.cj.jdbc.Driver;
+    </DataSourceInfo>
+
+    <ProviderName>Mondrian</ProviderName>
+    <ProviderType>MDP</ProviderType>
+    <AuthenticationMode>Unauthenticated</AuthenticationMode>
+
+    <Catalogs>
+      <Catalog name="AdventureWorksDW">
+        <Definition>/WEB-INF/queries/adventureworks_schema.xml</Definition>
+      </Catalog>
+    </Catalogs>
+  </DataSource>
+</DataSources>
