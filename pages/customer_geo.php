@@ -1,8 +1,8 @@
-<?php 
+<?php
 $page_title = "Customer Geography";
-include '../includes/header.php'; 
-include '../includes/sidebar.php'; 
-include '../includes/topbar.php'; 
+include '../includes/header.php';
+include '../includes/sidebar.php';
+include '../includes/topbar.php';
 ?>
 
 <!-- Page Heading -->
@@ -10,16 +10,19 @@ include '../includes/topbar.php';
     <h1 class="h3 mb-0 text-gray-800">Customer Geography Dashboard</h1>
     <div>
         <select id="yearFilterGeo" class="form-control form-control-sm d-inline-block" style="width: auto;">
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008" selected>2008</option>
+            <!-- PENTING: Default value harus tahun spesifik, bukan "all" -->
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="all" selected>All Years</option>
         </select>
     </div>
 </div>
 
 <!-- Summary Cards -->
 <div class="row">
-    
+
     <!-- Total Countries Card -->
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-primary shadow h-100 py-2">
@@ -94,88 +97,83 @@ include '../includes/topbar.php';
     </div>
 </div>
 
-<!-- Content Row -->
+<!-- ROW 1: Wilayah + Top Cities (SAMA TINGGI) -->
 <div class="row">
-    
-    <!-- Business Question 5: Geographic Distribution -->
-    <div class="col-xl-8">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    Wilayah mana yang memberikan kontribusi penjualan terbesar?
-                </h6>
+    <!-- Wilayah mana yang memberikan kontribusi penjualan terbesar? -->
+    <div class="col-xl-8 col-lg-8">
+        <div class="card shadow mb-4" style="height: 360px;">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="height: 55px;">
+                <h6 class="m-0 font-weight-bold text-primary" style="font-size: 0.9rem; line-height: 1.1;">Wilayah mana yang memberikan kontribusi penjualan terbesar?</h6>
                 <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                        aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Chart Type:</div>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
                         <a class="dropdown-item" href="#" onclick="changeGeoChartType('bar')">Bar Chart</a>
                         <a class="dropdown-item" href="#" onclick="changeGeoChartType('pie')">Pie Chart</a>
                         <a class="dropdown-item" href="#" onclick="changeGeoChartType('doughnut')">Doughnut Chart</a>
                     </div>
                 </div>
             </div>
-            <div class="card-body">
-                <canvas id="geoSalesChart" height="60"></canvas>
+            <div class="card-body p-2" style="height: calc(100% - 55px); padding: 10px;">
+                <div style="position: relative; height: 90%; max-height: 280px;">
+                    <canvas id="geoSalesChart" style="width: 100% !important; height: 100% !important;"></canvas>
+                </div>
             </div>
         </div>
     </div>
-    
-    <!-- Top Regions Widget -->
-    <div class="col-xl-4">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-success">
-                    <i class="fas fa-trophy text-warning"></i> Top 10 Cities by Sales
+
+
+    <!-- Top 10 Cities by Sales -->
+    <div class="col-xl-4 col-lg-4">
+        <div class="card shadow mb-4" style="height: 360px;">
+            <div class="card-header py-3" style="height: 55px;">
+                <h6 class="m-0 font-weight-bold text-success" style="font-size: 0.9rem; line-height: 1.1;">
+                    <i class="fas fa-trophy text-warning mr-1"></i>Top 10 Cities by Sales
                 </h6>
             </div>
-            <div class="card-body" style="max-height: 420px; overflow-y: auto;">
+            <div class="card-body p-3" style="height: calc(100% - 55px); overflow-y: auto;">
                 <div id="topCitiesList">
-                    <div class="text-center text-muted">
-                        <i class="fas fa-spinner fa-spin"></i> Loading...
+                    <div class="text-center text-muted p-3">
+                        <i class="fas fa-spinner fa-spin fa-lg mb-2 d-block"></i>Loading...
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 </div>
 
-<!-- Content Row - Country & State Charts -->
+<!-- ROW 2: Country + States (SAMA TINGGI) -->
 <div class="row">
-    
-    <!-- Sales by Country -->
-    <div class="col-xl-6">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    Sales Distribution by Country
-                </h6>
+    <!-- Sales Distribution by Country -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4" style="height: 360px;">
+            <div class="card-header py-3" style="height: 55px;">
+                <h6 class="m-0 font-weight-bold text-primary" style="font-size: 0.9rem; line-height: 1.1;">Sales Distribution by Country</h6>
             </div>
-            <div class="card-body">
-                <canvas id="countryChart" height="80"></canvas>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Sales by State (Top 10) -->
-    <div class="col-xl-6">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
-                    Top 10 States/Provinces by Sales
-                </h6>
-            </div>
-            <div class="card-body">
-                <canvas id="stateChart" height="80"></canvas>
+            <div class="card-body p-0" style="height: calc(100% - 55px);">
+                <div style="position: relative; height: 100%;">
+                    <canvas id="countryChart" style="width: 100% !important; height: 100% !important;"></canvas>
+                </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Top 10 States/Provinces by Sales -->
+    <div class="col-xl-6 col-lg-6">
+        <div class="card shadow mb-4" style="height: 360px;">
+            <div class="card-header py-3" style="height: 55px;">
+                <h6 class="m-0 font-weight-bold text-primary" style="font-size: 0.9rem; line-height: 1.1;">Top 10 States/Provinces by Sales</h6>
+            </div>
+            <div class="card-body p-0" style="height: calc(100% - 55px);">
+                <div style="position: relative; height: 100%;">
+                    <canvas id="stateChart" style="width: 100% !important; height: 100% !important;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <!-- Regional Performance Table -->
 <div class="row">
@@ -252,7 +250,7 @@ include '../includes/topbar.php';
     </div>
 </div>
 
-<!-- Custom JavaScript -->
-<script src="../assets/js/customer_geo.js"></script>
-
 <?php include '../includes/footer.php'; ?>
+
+<!-- Custom JavaScript -->
+<script src="../assets/js/customer_geo.js?v=20251211_999"></script>

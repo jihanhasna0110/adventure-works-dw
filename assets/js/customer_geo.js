@@ -259,31 +259,69 @@ function loadCountryChart(year) {
 // ============================================
 // 4. LOAD STATE CHART (Top 10)
 // ============================================
+// ============================================
+// 4. LOAD STATE CHART (Top 10) - FINAL
+// ============================================
 function loadStateChart(year) {
+  console.log("🔄 loadStateChart called with year:", year);
+
+  // 1) Hancurkan semua chart yang memakai canvas #stateChart
+  if (typeof Chart !== "undefined" && Chart.instances) {
+    Object.values(Chart.instances).forEach((ch) => {
+      if (ch.canvas && ch.canvas.id === "stateChart") {
+        try {
+          ch.destroy();
+          console.log("🗑️ Destroy old chart id:", ch.id);
+        } catch (e) {
+          console.warn("Destroy error:", e);
+        }
+      }
+    });
+  }
+
+  // 2) Bersihkan reference global
+  if (window.stateChart) {
+    try {
+      window.stateChart.destroy();
+    } catch (e) {}
+    window.stateChart = null;
+  }
+
   $.ajax({
     url: "../api/get_data.php",
     data: { action: "sales_by_region", year: year },
     dataType: "json",
     success: function (data) {
+      console.log("✅ API data length:", data.length);
+
       // Group by state
       const stateData = {};
       data.forEach((item) => {
-        if (!stateData[item.state]) {
-          stateData[item.state] = 0;
-        }
-        stateData[item.state] += parseFloat(item.total_sales);
+        const st = item.state || "Unknown";
+        if (!stateData[st]) stateData[st] = 0;
+        stateData[st] += parseFloat(item.total_sales || 0);
       });
 
-      // Sort and get top 10
+      // Sort & top 10
       const sortedStates = Object.entries(stateData)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 10);
 
-      if (stateChart) stateChart.destroy();
+      console.log("🏆 Top 10 states:", sortedStates);
 
-      const ctx = document.getElementById("stateChart").getContext("2d");
-      stateChart = new Chart(ctx, {
-        type: "horizontalBar",
+      const canvas = document.getElementById("stateChart");
+      if (!canvas) {
+        console.error("❌ Canvas #stateChart tidak ditemukan");
+        return;
+      }
+
+      const ctx = canvas.getContext("2d");
+      // Bersihkan isi canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // 3) Buat chart baru
+      window.stateChart = new Chart(ctx, {
+        type: "bar", // BUKAN horizontalBar
         data: {
           labels: sortedStates.map((s) => s[0]),
           datasets: [
@@ -299,22 +337,32 @@ function loadStateChart(year) {
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          indexAxis: "y",
+          indexAxis: "y", // bikin horizontal
           plugins: {
             legend: { display: false },
+            title: {
+              display: true,
+              text: "Top 10 States/Provinces by Sales",
+            },
           },
           scales: {
             x: {
               beginAtZero: true,
               ticks: {
                 callback: function (value) {
-                  return "$" + formatNumber(value);
+                  return "$" + Number(value).toLocaleString();
                 },
               },
             },
           },
         },
       });
+
+      console.log("🎉 State chart created successfully");
+    },
+    error: function (xhr, status, error) {
+      console.error("❌ loadStateChart AJAX error:", status, error);
+      console.error(xhr.responseText);
     },
   });
 }
@@ -341,7 +389,7 @@ function loadTopCities(year) {
 
       let html = '<div class="list-group list-group-flush">';
 
-      data.slice(0, 10).forEach((item, index) => {
+      data.slice(0, 5).forEach((item, index) => {
         const medal =
           index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "";
         const rankBadge =
@@ -475,7 +523,7 @@ function loadGeoTable(year) {
       }
 
       $("#geoTable").DataTable({
-        pageLength: 25,
+        pageLength: 10,
         order: [[3, "desc"]], // Sort by sales
         language: {
           search: "Search locations:",
@@ -597,28 +645,28 @@ function refreshGeoData() {
 }
 
 function exportGeoData() {
-alert('Exporting geography data to Excel...\nFeature coming soon!');
+  alert("Exporting geography data to Excel...\nFeature coming soon!");
 }
 function showToast(message, type) {
-const bgColors = {
-'success': '#1cc88a',
-'error': '#e74a3b',
-'info': '#36b9cc'
-};
-const toast = $('<div>')
+  const bgColors = {
+    success: "#1cc88a",
+    error: "#e74a3b",
+    info: "#36b9cc",
+  };
+  const toast = $("<div>")
     .css({
-        'position': 'fixed',
-        'top': '20px',
-        'right': '20px',
-        'background': bgColors[type] || bgColors['info'],
-        'color': 'white',
-        'padding': '15px 20px',
-        'border-radius': '5px',
-        'box-shadow': '0 4px 6px rgba(0,0,0,0.1)',
-        'z-index': 9999
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      background: bgColors[type] || bgColors["info"],
+      color: "white",
+      padding: "15px 20px",
+      "border-radius": "5px",
+      "box-shadow": "0 4px 6px rgba(0,0,0,0.1)",
+      "z-index": 9999,
     })
     .text(message);
 
-$('body').append(toast);
-setTimeout(() => toast.fadeOut(300, () => toast.remove()), 3000);
+  $("body").append(toast);
+  setTimeout(() => toast.fadeOut(300, () => toast.remove()), 3000);
 }

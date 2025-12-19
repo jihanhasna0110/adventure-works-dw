@@ -1,4 +1,35 @@
-The MIT License (MIT)
+MIT License
+
+===============================================================================
+Adventure Works Data Warehouse Dashboard
+===============================================================================
+
+Copyright (c) 2025 Anadya Tafdhila, Jihan Hasna Iftinan, Azzahra Rahmadani
+UPN "Veteran" Jawa Timur
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+===============================================================================
+SB Admin 2 - Bootstrap Admin Template
+===============================================================================
+
+This project incorporates SB Admin 2 template, which is licensed under MIT:
 
 Copyright (c) 2013-2021 Start Bootstrap LLC
 
@@ -19,3 +50,64 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+For more information about SB Admin 2:
+- Website: https://startbootstrap.com/theme/sb-admin-2/
+- GitHub: https://github.com/StartBootstrap/startbootstrap-sb-admin-2
+
+===============================================================================
+Third-Party Components
+===============================================================================
+
+This software includes or links to the following third-party components,
+each with their own license terms:
+
+1. Bootstrap (v4.6.0) - MIT License
+   https://getbootstrap.com/
+
+2. Chart.js (v4.4.4) - MIT License
+   https://www.chartjs.org/
+
+3. jQuery (v3.6.0) - MIT License
+   https://jquery.com/
+
+4. DataTables (v1.10.x) - MIT License
+   https://datatables.net/
+
+5. Font Awesome Free (v5.15.x) - Font Awesome Free License
+   https://fontawesome.com/
+
+6. Pentaho Data Integration - Apache License 2.0
+   https://www.hitachivantara.com/en-us/products/pentaho-plus-platform/data-integration-analytics.html
+
+7. Mondrian OLAP Server - Eclipse Public License 1.0
+   https://github.com/pentaho/mondrian
+
+8. Adventure Works Database - Microsoft Sample Database
+   https://github.com/Microsoft/sql-server-samples
+
+Please refer to each component's respective license for full details.
+
+===============================================================================
+Data Sources and Attribution
+===============================================================================
+
+This project uses the Adventure Works 2008 sample database provided by
+Microsoft for educational and demonstration purposes. The Adventure Works
+database and its contents are the property of Microsoft Corporation.
+
+Adventure Works Database Copyright: Microsoft Corporation
+Used under fair use for academic purposes.
+
+===============================================================================
+
+For questions about licensing or attribution, please contact:
+- Anadya Tafdhila
+- Jihan Hasna Iftinan
+- Azzahra Rahmadani
+
+Academic Supervisor:
+Abdul Rezha Efrat Najaf, S.Kom, M.Kom.
+Program Studi Sistem Informasi
+Fakultas Ilmu Komputer
+UPN "Veteran" Jawa Timur

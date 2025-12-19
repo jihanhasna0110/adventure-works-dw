@@ -1,1 +1,11 @@
-node_modules
+# Dependency folders
+node_modules/
+vendor/
+
+# Environment & config
+.env
+config/config.php
+
+# Logs & temp files
+*.log
+*.tmp
