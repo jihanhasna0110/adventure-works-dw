@@ -399,9 +399,9 @@ Start Bootstrap adalah open source library dari free Bootstrap templates dan the
 ## 👨‍💻 Authors & Contributors
 
 ### Tim Pengembang
-- **Anadya Tafdhila** (22082010142) - ETL Development, Data Modeling
-- **Jihan Hasna Iftinan** (22082010148) - Frontend Development, Dashboard Design  
-- **Azzahra Rahmadani** (22082010155) - Backend Development, OLAP Integration
+- **Anadya Tafdhila** (22082010142) 
+- **Jihan Hasna Iftinan** (22082010148)  
+- **Azzahra Rahmadani** (22082010155) 
 
 ### Dosen Pengampu
 **Abdul Rezha Efrat Najaf, S.Kom, M.Kom.**  
@@ -445,15 +445,6 @@ SOFTWARE.
 
 ---
 
-## 📞 Contact & Support
-
-Untuk pertanyaan atau dukungan terkait project ini:
-
-- **Email**: [Email tim atau individu]
-- **GitHub Issues**: [Link to issues page]
-- **Documentation**: Lihat file `FP DWO.docx` untuk dokumentasi lengkap
-
----
 
 ## 🙏 Acknowledgments
 
