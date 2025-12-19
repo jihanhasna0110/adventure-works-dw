@@ -210,8 +210,8 @@ http://localhost/project-dwh
 
 ### 2. Login
 **Default Credentials**:
-- Username: `admin`
-- Password: `admin123`
+- Username: `jihan`
+- Password: `jihan123`
 
 ### 3. Navigasi Menu
 Setelah login, Anda dapat mengakses:
