@@ -8,11 +8,11 @@ class Database {
     // ==========================================
     // KONFIGURASI UNTUK XAMPP LOCALHOST
     // ==========================================
-    private $host = "localhost";        // atau "127.0.0.1"
-    private $port = "3306";             // Port default MySQL XAMPP
-    private $db_name = "adventureworks_dw";  // Nama database Data Warehouse kamu
-    private $username = "root";         // Username default XAMPP
-    private $password = "";             // Password default XAMPP (kosong)
+    private $host = "sesuai localhostmu";        // atau "127.0.0.1"
+    private $port = "sesuai portmu";             // Port default MySQL XAMPP
+    private $db_name = "sesuai nama dbmu";  // Nama database Data Warehouse kamu
+    private $username = "sesuai username mu";         // Username default XAMPP
+    private $password = "sesuai passwordmu";             // Password default XAMPP (kosong)
     
     public $conn;
 
