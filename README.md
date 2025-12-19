@@ -95,7 +95,7 @@ project-dwh/
 │   ├── customer_geo.php       # Customer geography
 │   ├── business_analytics.php # Business analytics
 │   └── olap_mondrian.php      # Mondrian OLAP
-├── SQL #struktur data warehouse
+├── adventureworks_dw.sql #struktur data warehouse
 
 
 ```
