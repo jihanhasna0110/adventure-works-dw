@@ -4,9 +4,9 @@
 <jp:mondrianQuery
     id="querydemo3"
     jdbcDriver="com.mysql.cj.jdbc.Driver"
-    jdbcUrl="jdbc:mysql://localhost:3306/adventureworks_dw?useSSL=false&serverTimezone=UTC"
-    jdbcUser="root"
-    jdbcPassword=""
+    jdbcUrl="urlmu"
+    jdbcUser="usernamemu"
+    jdbcPassword="passwordmu">
     catalogUri="/WEB-INF/queries/adventureworks_schema.xml">
 
   SELECT 
@@ -16,5 +16,6 @@
       [Time].[Year].Members
     ) ON ROWS
   FROM [Sales]
+
 
 </jp:mondrianQuery>
