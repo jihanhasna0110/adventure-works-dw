@@ -66,6 +66,8 @@ Project menggunakan **Star Schema** dengan struktur:
 
 ```
 project-dwh/
+├── Pentaho       # file luar website untuk ETL saja
+├── Mondrian      # file luar website untuk mondrian, hanya beberapa file penting
 ├── api/
 │   └── check_session.php       # Check user session
 ├── assets/
