@@ -5,9 +5,9 @@
     id="query01"
     catalogUri="/WEB-INF/queries/adventureworks_schema.xml"
     jdbcDriver="com.mysql.cj.jdbc.Driver"
-    jdbcUrl="jdbc:mysql://localhost:3306/adventureworks_dw?useSSL=false&serverTimezone=UTC"
-    jdbcUser="root"
-    jdbcPassword="">
+    jdbcUrl="urlmu"
+    jdbcUser="usernamemu"
+    jdbcPassword="passwordmu">
 
   SELECT 
     {[Measures].[Total Sales], [Measures].[Order Count]} ON COLUMNS,
@@ -17,3 +17,4 @@
 </jp:mondrianQuery>
 
 <jp:table id="table01" query="query01"/>
+
