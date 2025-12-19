@@ -95,13 +95,9 @@ project-dwh/
 │   ├── customer_geo.php       # Customer geography
 │   ├── business_analytics.php # Business analytics
 │   └── olap_mondrian.php      # Mondrian OLAP
-├── ETL/
-│   └── (Pentaho transformation files)
-├── SQL/
-│   ├── create_schema.sql      # DW schema creation
-│   ├── business_questions.sql # BQ queries
-│   └── sample_queries.sql     # Sample analytical queries
-└── index.php                  # Main entry point
+├── SQL #struktur data warehouse
+
+
 ```
 
 ---
